@@ -75,13 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				188FDD262338EC9F0079CDF7 /* Runtime */,
-				188FDD272338EC9F0079CDF7 /* AppDelegate.h */,
-				188FDD282338EC9F0079CDF7 /* AppDelegate.m */,
-				188FDD362338ECAF0079CDF7 /* main.m */,
-				188FDD402338F5250079CDF7 /* NSURL+url.h */,
-				188FDD412338F5250079CDF7 /* NSURL+url.m */,
-				188FDD2A2338EC9F0079CDF7 /* ViewController.h */,
-				188FDD2B2338EC9F0079CDF7 /* ViewController.m */,
 				188FDD252338EC9F0079CDF7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,9 +90,16 @@
 		188FDD262338EC9F0079CDF7 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
+				188FDD272338EC9F0079CDF7 /* AppDelegate.h */,
+				188FDD282338EC9F0079CDF7 /* AppDelegate.m */,
 				188FDD49233A02DD0079CDF7 /* KVO */,
+				188FDD362338ECAF0079CDF7 /* main.m */,
 				1827E70A233A03ED005BEA5D /* Model */,
+				188FDD402338F5250079CDF7 /* NSURL+url.h */,
+				188FDD412338F5250079CDF7 /* NSURL+url.m */,
 				1827E708233A037F005BEA5D /* Resource */,
+				188FDD2A2338EC9F0079CDF7 /* ViewController.h */,
+				188FDD2B2338EC9F0079CDF7 /* ViewController.m */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -141,7 +141,7 @@
 		188FDD1C2338EC9F0079CDF7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = denglj;
 				TargetAttributes = {
 					188FDD232338EC9F0079CDF7 = {
