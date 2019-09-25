@@ -11,7 +11,7 @@
 
 @interface PersonKVO : NSObject
 
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong) NSString *name;
 
 @end
 

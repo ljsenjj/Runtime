@@ -76,14 +76,15 @@
 
 - (void)kvoTest {
     
-    PersonKVO *p = [[PersonKVO alloc] init];
+    _pkvo = [[PersonKVO alloc] init];
+    _pkvo.name = @"oldName";
     
     NSLog(@"==========添加KVO监听之前==========");
-    NSLog(@"p的类对象 : %@", object_getClass(p)); // p.isa
-    NSLog(@"p的元类对象 : %@", object_getClass(object_getClass(p)));  // p.isa.isa
-    NSLog(@"p对象的父类 : %@", [object_getClass(p) superclass]);   // 类对象的superclass
+    NSLog(@"p的类对象 : %@", object_getClass(_pkvo)); // p.isa
+    NSLog(@"p的元类对象 : %@", object_getClass(object_getClass(_pkvo)));  // p.isa.isa
+    NSLog(@"p对象的父类 : %@", [object_getClass(_pkvo) superclass]);   // 类对象的superclass
     // 打s断点，lldb控制台输入  p (IMP) 0x10089dfec 可以将方法地址转成名称形式显示
-    NSLog(@"方法 : %p", [p methodForSelector:@selector(setName:)]);
+    NSLog(@"方法 : %p", [_pkvo methodForSelector:@selector(setName:)]);
     
     // 添加观察者,监听name值的变化
     
@@ -100,14 +101,13 @@
     
 //    [p addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
     // 用自定义的观察者
-    [p LJ_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+    [_pkvo LJ_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
     
     NSLog(@"==========添加KVO监听之后==========");
-    NSLog(@"p的类对象 : %@", object_getClass(p));      // p.isa
-    NSLog(@"p的元类对象 : %@", object_getClass(object_getClass(p)));  // p.isa.isa
-    NSLog(@"p对象的父类 : %@", [object_getClass(p) superclass]);   // 类对象的superclass
-    NSLog(@"方法 : %p", [p methodForSelector:@selector(setName:)]);
-    _pkvo = p;
+    NSLog(@"p的类对象 : %@", object_getClass(_pkvo));      // p.isa
+    NSLog(@"p的元类对象 : %@", object_getClass(object_getClass(_pkvo)));  // p.isa.isa
+    NSLog(@"p对象的父类 : %@", [object_getClass(_pkvo) superclass]);   // 类对象的superclass
+    NSLog(@"方法 : %p", [_pkvo methodForSelector:@selector(setName:)]);
 }
 
 // 值变化，进入该方法

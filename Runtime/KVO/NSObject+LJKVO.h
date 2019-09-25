@@ -12,7 +12,7 @@
 
 @interface NSObject (LJKVO)
 
-- (void)LJ_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context;
+- (void)LJ_addObserver:(NSObject *_Nullable)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context;
 
 
 @end
