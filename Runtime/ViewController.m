@@ -21,6 +21,7 @@
 #import "NSObject+LJKVO.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import "LJTeacher.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) PersonKVO *pkvo;
@@ -32,12 +33,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
 //    [self msgSend];
 //    [self methodExchangeImp];
     [self kvoTest];
 
 }
+
+// 归档
+- (IBAction)saveClick:(id)sender {
+    LJTeacher *t = [[LJTeacher alloc] init];
+    t.name = @"dlj";
+    t.age = 20;
+    
+    // 沙盒路径
+    NSString *temp = NSTemporaryDirectory();
+    NSString *filePath = [temp stringByAppendingPathComponent:@"t.lj"];
+    
+    // 归档
+    [NSKeyedArchiver archiveRootObject:t toFile:filePath];
+    NSLog(@"归档");
+}
+
+// 解档
+- (IBAction)getClick:(id)sender {
+    NSString *temp = NSTemporaryDirectory();
+    NSString *filePath = [temp stringByAppendingPathComponent:@"t.lj"];
+    // 解档
+    LJTeacher *ut = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+    
+    NSLog(@"拿到了解档是名字：%@，年龄：%d.", ut.name, ut.age);
+    
+}
+
+
+
+
 
 // oc方法调用实质是 消息发送！
 - (void)msgSend {
