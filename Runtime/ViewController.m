@@ -33,14 +33,14 @@
     [super viewDidLoad];
     
     
-//    [self test1];
-//    [self test2];
+//    [self msgSend];
+//    [self methodExchangeImp];
     [self kvoTest];
 
 }
 
 // oc方法调用实质是 消息发送！
-- (void)test1 {
+- (void)msgSend {
     
     // 获取类
     NSClassFromString(@"");
@@ -67,7 +67,7 @@
 }
 
 
-- (void)test2 {
+- (void)methodExchangeImp {
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.con/中午"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSLog(@"%@", request);
@@ -82,9 +82,9 @@
     NSLog(@"==========添加KVO监听之前==========");
     NSLog(@"p的类对象 : %@", object_getClass(_pkvo)); // p.isa
     NSLog(@"p的元类对象 : %@", object_getClass(object_getClass(_pkvo)));  // p.isa.isa
-    NSLog(@"p对象的父类 : %@", [object_getClass(_pkvo) superclass]);   // 类对象的superclass
-    // 打s断点，lldb控制台输入  p (IMP) 0x10089dfec 可以将方法地址转成名称形式显示
-    NSLog(@"方法 : %p", [_pkvo methodForSelector:@selector(setName:)]);
+    NSLog(@"p的类对象的父类 : %@", [object_getClass(_pkvo) superclass]);   // 类对象的superclass
+    // 打断点，lldb控制台输入  p (IMP) 0x10089dfec 可以将方法地址转成名称形式显示
+    NSLog(@"set方法 : %p", [_pkvo methodForSelector:@selector(setName:)]);
     
     // 添加观察者,监听name值的变化
     
@@ -99,15 +99,15 @@
      所以当name值变化的时候，能进入外面的observeValueForKeyPath方法
      ▲▲*/
     
-//    [p addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+//    [_pkvo addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
     // 用自定义的观察者
     [_pkvo LJ_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
     
     NSLog(@"==========添加KVO监听之后==========");
     NSLog(@"p的类对象 : %@", object_getClass(_pkvo));      // p.isa
     NSLog(@"p的元类对象 : %@", object_getClass(object_getClass(_pkvo)));  // p.isa.isa
-    NSLog(@"p对象的父类 : %@", [object_getClass(_pkvo) superclass]);   // 类对象的superclass
-    NSLog(@"方法 : %p", [_pkvo methodForSelector:@selector(setName:)]);
+    NSLog(@"p的类对象的父类 : %@", [object_getClass(_pkvo) superclass]);   // 类对象的superclass
+    NSLog(@"set方法 : %p", [_pkvo methodForSelector:@selector(setName:)]);
 }
 
 // 值变化，进入该方法

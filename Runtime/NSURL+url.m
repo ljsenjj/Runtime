@@ -25,9 +25,17 @@
     // 获取实例方法
     // class_getInstanceMethod(类名, 方法名)
     
+    /*
+     SEL(URLWithString:)      -->     IMP(URLWithString:)
+     SEL(LJ_URLWithString:)   -->     IMP(LJ_URLWithString:)
+     */
     // 交换方法实现
     method_exchangeImplementations(urlWithStr, LJ_urlWithStr);
     
+    /*
+     SEL(URLWithString:)      -->     IMP(LJ_URLWithString:)
+     SEL(LJ_URLWithString:)   -->     IMP(URLWithString:)
+     */
 }
 
 
@@ -40,7 +48,7 @@
     NSURL *url = [NSURL LJ_URLWithString:URLString];
     
     if (url == nil) {
-        NSLog(@"nil");
+        NSLog(@"url is nil");
     }
     return url;
 }

@@ -38,6 +38,9 @@ static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
     const char *classType = method_getTypeEncoding(classMethod);
     class_addMethod(childClass, classSel, (IMP)kvo_class, classType);
     
+//    Method class_method = class_getInstanceMethod(self.class, @selector(class));
+//    class_addMethod(childClass, @selector(class), (IMP)kvo_class, method_getTypeEncoding(class_method));
+    
     // 给子类动态的添加 didChangeValueForKey 方法
     SEL changeValueSel = NSSelectorFromString(@"didChangeValueForKey:");
     Method changeValueMethod = class_getInstanceMethod(self.class, changeValueSel);
@@ -95,7 +98,7 @@ static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
  @param _cmd  class
  @return  返回父类 Class 外界不会知道 NSKVONotifying_子类存在
  */
-static Class kvo_class(id self,SEL _cmd) {
+static Class kvo_class(id self, SEL _cmd) {
     return class_getSuperclass(object_getClass(self));
 }
 
@@ -215,16 +218,14 @@ static NSString * keyForSetter(NSString *setter){
     unsigned int count ;
     Method *methods = class_copyMethodList(class, &count);
     NSMutableString *methodNames = [NSMutableString string];
-    [methodNames appendFormat:@"%@ : ", class];
+    [methodNames appendFormat:@"%@ 方法: ", class];
     
     for (int i = 0 ; i < count; i++) {
         Method method = methods[i];
         NSString *methodName  = NSStringFromSelector(method_getName(method));
-        
         [methodNames appendString: methodName];
         [methodNames appendString:@" , "];
     }
-    NSLog(@"类里面的方法");
     NSLog(@"%@",methodNames);
     
 }
