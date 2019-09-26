@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1813B23F233C943200D5B1E3 /* LJTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813B23E233C943200D5B1E3 /* LJTeacher.m */; };
 		1827E709233A03B4005BEA5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188FDD2D2338EC9F0079CDF7 /* Main.storyboard */; };
 		188FDD292338EC9F0079CDF7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD282338EC9F0079CDF7 /* AppDelegate.m */; };
 		188FDD2C2338EC9F0079CDF7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD2B2338EC9F0079CDF7 /* ViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1813B23D233C943200D5B1E3 /* LJTeacher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTeacher.h; sourceTree = "<group>"; };
+		1813B23E233C943200D5B1E3 /* LJTeacher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTeacher.m; sourceTree = "<group>"; };
 		188FDD242338EC9F0079CDF7 /* Runtime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runtime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188FDD272338EC9F0079CDF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188FDD282338EC9F0079CDF7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -51,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1813B23C233C93FC00D5B1E3 /* 归档解档 */ = {
+			isa = PBXGroup;
+			children = (
+				1813B23D233C943200D5B1E3 /* LJTeacher.h */,
+				1813B23E233C943200D5B1E3 /* LJTeacher.m */,
+			);
+			path = "归档解档";
+			sourceTree = "<group>";
+		};
 		1827E708233A037F005BEA5D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +102,7 @@
 		188FDD262338EC9F0079CDF7 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
+				1813B23C233C93FC00D5B1E3 /* 归档解档 */,
 				188FDD49233A02DD0079CDF7 /* KVO */,
 				1827E70A233A03ED005BEA5D /* Model */,
 				1827E708233A037F005BEA5D /* Resource */,
@@ -185,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1813B23F233C943200D5B1E3 /* LJTeacher.m in Sources */,
 				188FDD2C2338EC9F0079CDF7 /* ViewController.m in Sources */,
 				188FDD422338F5250079CDF7 /* NSURL+url.m in Sources */,
 				188FDD372338ECAF0079CDF7 /* main.m in Sources */,
