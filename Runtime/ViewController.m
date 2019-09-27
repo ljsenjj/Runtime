@@ -11,17 +11,16 @@
  SEL1  ->  IMP2
  SEL2  ->  IMP1
  
- 
- iOS学院--Runtime aiqiyi
+
  */
 
 #import "ViewController.h"
+#import <objc/message.h>
 #import "Person.h"
 #import "PersonKVO.h"
-#import "NSObject+LJKVO.h"
-#import <objc/runtime.h>
-#import <objc/message.h>
 #import "LJTeacher.h"
+#import "NSObject+LJKVO.h"
+#import "UIView+Associated.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) PersonKVO *pkvo;
@@ -35,11 +34,12 @@
     
 //    [self msgSend];
 //    [self methodExchangeImp];
-    [self kvoTest];
+//    [self diyKVO];
+    [self categoryProperty];
 
 }
 
-// 归档
+#pragma mark ----归档解档----
 - (IBAction)saveClick:(id)sender {
     LJTeacher *t = [[LJTeacher alloc] init];
     t.name = @"dlj";
@@ -54,7 +54,6 @@
     NSLog(@"归档");
 }
 
-// 解档
 - (IBAction)getClick:(id)sender {
     NSString *temp = NSTemporaryDirectory();
     NSString *filePath = [temp stringByAppendingPathComponent:@"t.lj"];
@@ -65,10 +64,7 @@
     
 }
 
-
-
-
-
+#pragma mark ----消息发送机制----
 // oc方法调用实质是 消息发送！
 - (void)msgSend {
     
@@ -80,31 +76,36 @@
     NSSelectorFromString(@"");
     sel_registerName("");       // runtime 底层写法
     
-    
     // 用消息发送方法创建person实例
-    // objc_msgSend(类对象, 要调用的方法，参数...)
+    // objc_msgSend(消息的接收者, 要调用的方法(方法编号SEL)，参数...)
     
     // Person *p = [Person alloc];
     Person *p = objc_msgSend(NSClassFromString(@"Person"), sel_registerName("alloc"));
     // p = [p init];
     p = objc_msgSend(p, @selector(init));
 
+// 消除警告
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
     // 调用方法
     [p performSelector:@selector(say) withObject:@"who are u"];
 //    objc_msgSend(p, @selector(say), @"who are u");
     // 消息发送，底层就是这么实现的
     objc_msgSend(p, @selector(eat));
+    objc_msgSend(p, @selector(run));
+    
+#pragma clang diagnostic pop
 }
 
-
+#pragma mark ----交换方法实现----
 - (void)methodExchangeImp {
     NSURL *url = [NSURL URLWithString:@"http://www.baidu.con/中午"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSLog(@"%@", request);
 }
 
-
-- (void)kvoTest {
+#pragma mark ----自定义KVO----
+- (void)diyKVO {
     
     _pkvo = [[PersonKVO alloc] init];
     _pkvo.name = @"oldName";
@@ -149,6 +150,14 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     static int a;
     _pkvo.name = [NSString stringWithFormat:@"%d", a++];
+}
+
+#pragma mark ----分类的属性----
+// 可以通过runtime给分类添加属性
+- (void)categoryProperty {
+    UIView *view = [[UIView alloc] init];
+    view.assName = @"assName111";
+    NSLog(@"我是分类的属性:%@", view.assName);
 }
 
 @end

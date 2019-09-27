@@ -16,7 +16,7 @@
  全工程调用原来的方法都将改变，且用的地方不用改一句代码
  */
 +(void)load {
-    
+    NSLog(@"url load");
     // 系统方法             获取类方法
     Method urlWithStr = class_getClassMethod(self, @selector(URLWithString:));
     // 下面自定义的方法
