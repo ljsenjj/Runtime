@@ -53,8 +53,6 @@ static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
      子类继承父类，子类里是没有setName方法的
      但是能调用，是因为isa指针的存在，当子类找不到setName方法，就从父类中找
      所以上面新建并注册了Person的子类，还要动态添加setName方法的实现
-     
-     "v@:@" 方法的写法
      */
     class_addMethod(childClass, setterSel, (IMP)kvo_setter, method_getTypeEncoding(method));
     

@@ -74,7 +74,7 @@
 // 当这个类被调用了一个没有实现的实例方法时进入该方法
 + (BOOL)resolveInstanceMethod:(SEL)sel {
     
-    NSLog(@"SEL = %@", NSStringFromSelector(sel));
+    NSLog(@"Person SEL = %@", NSStringFromSelector(sel));
     
 //    @selector(say) == sel_registerName("say")
     if (sel == sel_registerName("say")) {
@@ -116,7 +116,7 @@
 // 这是一个函数
 void haha(id suibian, SEL quname, NSString *objc) {
     // suibian = p, quname = @selector(say), objc = @"who are u"
-    NSLog(@"哈哈了 %@", objc);
+    NSLog(@"我哈哈了 %@", objc);
 }
 
 - (void)eat {
