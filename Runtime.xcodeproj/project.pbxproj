@@ -11,6 +11,7 @@
 		1813B23F233C943200D5B1E3 /* LJTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813B23E233C943200D5B1E3 /* LJTeacher.m */; };
 		1827E709233A03B4005BEA5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188FDD2D2338EC9F0079CDF7 /* Main.storyboard */; };
 		186227CF233F22DB00D5A8C4 /* RuntimeManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 186227CE233F22DB00D5A8C4 /* RuntimeManage.m */; };
+		186227D2233F60D600D5A8C4 /* KVOObserverItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 186227D1233F60D600D5A8C4 /* KVOObserverItem.m */; };
 		188FDD292338EC9F0079CDF7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD282338EC9F0079CDF7 /* AppDelegate.m */; };
 		188FDD2C2338EC9F0079CDF7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD2B2338EC9F0079CDF7 /* ViewController.m */; };
 		188FDD312338ECAF0079CDF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188FDD302338ECAF0079CDF7 /* Assets.xcassets */; };
@@ -30,6 +31,8 @@
 		1813B23E233C943200D5B1E3 /* LJTeacher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTeacher.m; sourceTree = "<group>"; };
 		186227CD233F22DB00D5A8C4 /* RuntimeManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeManage.h; sourceTree = "<group>"; };
 		186227CE233F22DB00D5A8C4 /* RuntimeManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeManage.m; sourceTree = "<group>"; };
+		186227D0233F60D600D5A8C4 /* KVOObserverItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVOObserverItem.h; sourceTree = "<group>"; };
+		186227D1233F60D600D5A8C4 /* KVOObserverItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVOObserverItem.m; sourceTree = "<group>"; };
 		188FDD242338EC9F0079CDF7 /* Runtime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runtime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188FDD272338EC9F0079CDF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188FDD282338EC9F0079CDF7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 			children = (
 				188FDD432339B5AE0079CDF7 /* PersonKVO.h */,
 				188FDD442339B5AE0079CDF7 /* PersonKVO.m */,
+				186227D0233F60D600D5A8C4 /* KVOObserverItem.h */,
+				186227D1233F60D600D5A8C4 /* KVOObserverItem.m */,
 				188FDD462339BD630079CDF7 /* NSObject+LJKVO.h */,
 				188FDD472339BD630079CDF7 /* NSObject+LJKVO.m */,
 			);
@@ -276,6 +281,7 @@
 				188FDD3F2338ECE70079CDF7 /* Person.m in Sources */,
 				188FDD292338EC9F0079CDF7 /* AppDelegate.m in Sources */,
 				188FDD452339B5AE0079CDF7 /* PersonKVO.m in Sources */,
+				186227D2233F60D600D5A8C4 /* KVOObserverItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

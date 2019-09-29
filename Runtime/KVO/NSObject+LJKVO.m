@@ -9,10 +9,13 @@
 
 #import "NSObject+LJKVO.h"
 #import <objc/message.h>
+#import "KVOObserverItem.h"
 
 static NSString *const LJKVOPrefix = @"LJ_NSKVONotifying_";
 static NSString *const LJKVOAssociatedObserver = @"LJKVO_AssociatedObserver";
 static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
+
+static void *const LJKVOObserverAssociatedKey = (void *)&LJKVOObserverAssociatedKey;
 
 @implementation NSObject (LJKVO)
 
@@ -21,22 +24,20 @@ static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
     [self classForMethods:self.class];
     
     // 是否有setter方法
-    NSString *setterMethodName = setterForKey(keyPath);
-    SEL setterSel = NSSelectorFromString(setterMethodName);
-    Method method = class_getInstanceMethod(self.class, setterSel);
-    if (!method) {
-        @throw [[NSException alloc] initWithName:NSExtensionItemAttachmentsKey reason:@"没有setter方法" userInfo:nil];
-        return;
+    SEL originalSel = NSSelectorFromString(setterForKey(keyPath));
+    Method originalMethod = class_getInstanceMethod(self.class, originalSel);
+    if (!originalMethod) {
+        
+        NSString *exceptionReason = [NSString stringWithFormat:@"%@ Class %@ setter SEL not found.",
+                                     NSStringFromClass([self class]),
+                                     NSStringFromSelector(originalSel)];
+        NSException *exception = [NSException exceptionWithName:@"NotExistKeyExceptionName"
+                                                         reason:exceptionReason
+                                                       userInfo:nil];
+        [exception raise];
     }
-    
     // 动态创建子类  NSKVONotifying_xxx
     Class childClass = [self registerChildClassWithSuperClass:self.class];
-    
-    // 给子类动态的添加 class 实现
-    SEL classSel = NSSelectorFromString(@"class");
-    Method classMethod = class_getInstanceMethod(self.class, classSel);
-    const char *classType = method_getTypeEncoding(classMethod);
-    class_addMethod(childClass, classSel, (IMP)kvo_class, classType);
     
 //    Method class_method = class_getInstanceMethod(self.class, @selector(class));
 //    class_addMethod(childClass, @selector(class), (IMP)kvo_class, method_getTypeEncoding(class_method));
@@ -54,12 +55,90 @@ static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
      但是能调用，是因为isa指针的存在，当子类找不到setName方法，就从父类中找
      所以上面新建并注册了Person的子类，还要动态添加setName方法的实现
      */
-    class_addMethod(childClass, setterSel, (IMP)kvo_setter, method_getTypeEncoding(method));
+    class_addMethod(childClass, originalSel, (IMP)kvo_setter, method_getTypeEncoding(originalMethod));
     
     // 将观察者对象跟当前实例 self 关联起来
     objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(LJKVOAssociatedObserver), observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     [self classForMethods:childClass];
+}
+
+#pragma mark ----KVO Block----
+/**
+ 1. 通过Method判断是否有这个key对应的selector，如果没有则Crash。
+ 2. 判断当前类是否是KVO子类，如果不是则创建，并设置其isa指针。
+ 3. 如果没有实现，则添加Key对应的setter方法。
+ 4. 将调用对象添加到数组中。
+*/
+- (void)LJ_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath callback:(LJ_KVOObserverBlock)callback {
+    
+    // 1.
+    SEL originalSel = NSSelectorFromString(setterForKey(keyPath));
+    Method originalMethod = class_getInstanceMethod(self.class, originalSel);
+    if (!originalMethod) {
+        
+        NSString *exceptionReason = [NSString stringWithFormat:@"%@ Class %@ setter SEL not found.",
+                                     NSStringFromClass([self class]),
+                                     NSStringFromSelector(originalSel)];
+        NSException *exception = [NSException exceptionWithName:@"NotExistKeyExceptionName"
+                                                         reason:exceptionReason
+                                                       userInfo:nil];
+        [exception raise];
+    }
+    
+    // 2.
+    Class childClass = self.class;
+    NSString *kvoClassString = NSStringFromClass(self.class);
+    if (![kvoClassString hasPrefix:LJKVOPrefix]) {
+        childClass = [self registerChildClassWithSuperClass:self.class];
+    }
+    
+    // 3.
+    if (![self hasSeletorWithSel:originalSel]) {
+        class_addMethod(childClass, originalSel, (IMP)block_kvoSetter, method_getTypeEncoding(originalMethod));
+    }
+    
+    // 4.
+    KVOObserverItem *observerItem = [[KVOObserverItem alloc] initWithObserver:observer
+                                                                          key:keyPath
+                                                                        block:callback];
+    
+    NSMutableArray<KVOObserverItem *> *observers = objc_getAssociatedObject(self, LJKVOObserverAssociatedKey);
+    if (observers == nil) {
+        observers = [NSMutableArray array];
+    }
+    [observers addObject:observerItem];
+    objc_setAssociatedObject(self, LJKVOObserverAssociatedKey, observers, OBJC_ASSOCIATION_RETAIN);
+    
+}
+
+/**
+ 1. 获取旧值。
+ 2. 创建super的结构体，并向super发送属性的消息。
+ 3. 遍历调用block。
+ */
+static void block_kvoSetter(id self, SEL _cmd, id newValue) {
+    // 1.
+    id (*getterMsgSend) (id, SEL) = (void *)objc_msgSend;
+    NSString *key = keyForSetter(NSStringFromSelector(_cmd));
+    SEL getterSelector = NSSelectorFromString(key);
+    id oldValue = getterMsgSend(self, getterSelector);
+    
+    // 2.
+    id (*msgSendSuper) (void *, SEL, id) = (void *)objc_msgSendSuper;
+    struct objc_super objcSuper = {
+        .receiver = self,
+        .super_class = class_getSuperclass(object_getClass(self))
+    };
+    msgSendSuper(&objcSuper, _cmd, newValue);
+    
+    // 3.
+    NSMutableArray <KVOObserverItem *>* observers = objc_getAssociatedObject(self, LJKVOObserverAssociatedKey);
+    [observers enumerateObjectsUsingBlock:^(KVOObserverItem * _Nonnull mapTable, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([mapTable.key isEqualToString:key] && mapTable.block) {
+            mapTable.block(self, NSStringFromSelector(_cmd), oldValue, newValue);
+        }
+    }];
 }
 
 #pragma mark - 函数区域
@@ -71,8 +150,12 @@ static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
  */
 - (Class)registerChildClassWithSuperClass:(Class)superCls  {
     
-    // 子类名字
+    // 判断是否存在子类，如果存在则返回。
     NSString *childClsName = [NSString stringWithFormat:@"%@%@", LJKVOPrefix, superCls];
+    Class childCls = objc_getClass(childClsName.UTF8String);
+    if (childCls) {
+        return childCls;
+    }
     
     /*
      动态创建一个类(创建PersonKVO的子类)
@@ -80,10 +163,20 @@ static NSString *const LJKVOAssociatedOldValue = @"LJKVO_AssociatedOldValue";
      2、叫什么名字(C类型的字符串)
      3、分配内存大小
      */
-    Class childCls = objc_allocateClassPair(superCls, childClsName.UTF8String, 16);
+    childCls = objc_allocateClassPair(superCls, childClsName.UTF8String, 16);
     // 注册一个子类
     objc_registerClassPair(childCls);
-    // 将父类 isa 指针指向 子类
+    
+    // 给子类动态的添加 class 实现
+    SEL classSel = NSSelectorFromString(@"class");
+    Method classMethod = class_getInstanceMethod(self.class, classSel);
+    const char *classType = method_getTypeEncoding(classMethod);
+    class_addMethod(childCls, classSel, (IMP)kvo_class, classType);
+    
+    /*
+     将一个对象设置为别的类类型
+     将父类 isa 指针指向 子类
+     */
     object_setClass(self, childCls);
     
     return childCls;
@@ -234,12 +327,10 @@ static NSString * keyForSetter(NSString *setter){
  @param selector 方法编号
  @return YES or NO
  */
-- (BOOL)hasSeletor:(SEL)selector{
-    
-    Class observedClass = object_getClass(self);
+- (BOOL)hasSeletorWithSel:(SEL)selector {
     unsigned int methodCount = 0;
     //得到一堆方法的名字列表  //class_copyIvarList 实例变量  //class_copyPropertyList 得到所有属性名字
-    Method *methodList = class_copyMethodList(observedClass, &methodCount);
+    Method *methodList = class_copyMethodList(object_getClass(self), &methodCount);
     
     for (int i = 0; i<methodCount; i++) {
         SEL sel = method_getName(methodList[i]);

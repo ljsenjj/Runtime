@@ -144,17 +144,29 @@ static RuntimeManage *_instance = nil ;
      所以当name值变化的时候，能进入外面的observeValueForKeyPath方法
      ▲▲*/
     
-    //    [_pkvo addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+    // 系统观察者
+//    [_pkvo addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
     // 用自定义的观察者
-    [_pkvo LJ_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+//    [_pkvo LJ_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
+    
+    // KVO Block
+    [_pkvo LJ_addObserver:self forKeyPath:@"name" callback:^(id observedObject, NSString *observedKey, id oldValue, id newValue) {
+        NSLog(@"KVO Block old=%@, new=%@", oldValue, newValue);
+    }];
     
     NSLog(@"==========添加KVO监听之后==========");
-    NSLog(@"p的类对象 : %@", object_getClass(_pkvo));      // p.isa
+    NSLog(@"p的类对象 : %@ ", object_getClass(_pkvo));      // p.isa
     NSLog(@"p的元类对象 : %@", object_getClass(object_getClass(_pkvo)));  // p.isa.isa
     NSLog(@"p的类对象的父类 : %@", [object_getClass(_pkvo) superclass]);   // 类对象的superclass
     NSLog(@"set方法 : %p", [_pkvo methodForSelector:@selector(setName:)]);
 }
 
+- (void)blockKVO {
+
+    _pkvo.name = @"oldName";
+    
+}
+    
 // 值变化，进入该方法
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     NSLog(@"change = %@", change);
@@ -163,7 +175,7 @@ static RuntimeManage *_instance = nil ;
 // 改变_pkvo属性name的值
 - (void)changeValue {
     static int a;
-    NSLog(@"changeValue = %d", a);
+//    NSLog(@"changeValue = %d", a);
     _pkvo.name = [NSString stringWithFormat:@"%d", a++];
 }
 

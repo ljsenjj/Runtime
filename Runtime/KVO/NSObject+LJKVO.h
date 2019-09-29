@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-// 自定义实现KVO
+typedef void (^LJ_KVOObserverBlock) (id observedObject, NSString *observedKey, id oldValue, id newValue);
 
 @interface NSObject (LJKVO)
 
 - (void)LJ_addObserver:(NSObject *_Nullable)observer forKeyPath:(NSString *_Nullable)keyPath options:(NSKeyValueObservingOptions)options context:(nullable void *)context;
 
+// KVO Block
+- (void)LJ_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath callback:(LJ_KVOObserverBlock)callback;
+
+- (void)LJ_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
 
 @end
 
