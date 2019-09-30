@@ -15,7 +15,9 @@
 #import "Person.h"
 #import <objc/runtime.h>
 
-@implementation Person
+@implementation Person {
+    NSString *privateStr;
+}
 
 // 预加载，把代码从硬盘加载到内存中，在main方法之前调用
 
@@ -92,6 +94,14 @@
     return [super resolveInstanceMethod:sel];
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        privateStr = @"aaaaa";
+    }
+    return self;
+}
+
 /*
   如果对象收到一条无法处理的消息
  */
@@ -126,8 +136,6 @@ void haha(id suibian, SEL quname, NSString *objc) {
 - (void)run {
     NSLog(@"跑了");
 }
-
-
 
 
 

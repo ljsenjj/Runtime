@@ -56,6 +56,12 @@
     
 }
 
+// 字典转模型
+- (IBAction)dictToModelClick:(id)sender {
+    [_runtimeManage dictionaryToModel];
+    
+}
+
 // KVO
 - (IBAction)kvoClick:(id)sender {
     [_runtimeManage diyKVO];

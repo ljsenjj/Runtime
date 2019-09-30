@@ -98,6 +98,16 @@
                                     <action selector="kvoBlockClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Gs-w7-WUg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SCC-zP-5BU">
+                                <rect key="frame" x="142" y="199" width="90" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.8902604126" green="1" blue="0.85162635620000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="字典转模型"/>
+                                <connections>
+                                    <action selector="dictToModelClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tfj-6A-6yz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

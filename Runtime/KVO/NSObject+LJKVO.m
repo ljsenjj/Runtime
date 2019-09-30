@@ -57,6 +57,8 @@ static void *const LJKVOObserverAssociatedKey = (void *)&LJKVOObserverAssociated
      */
     class_addMethod(childClass, originalSel, (IMP)kvo_setter, method_getTypeEncoding(originalMethod));
     
+    // 这里还要根据监听值的类型，来生成kvo_setter方法，否则当监听的是int类型时，id参数会挂
+    
     // 将观察者对象跟当前实例 self 关联起来
     objc_setAssociatedObject(self, (__bridge const void * _Nonnull)(LJKVOAssociatedObserver), observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     

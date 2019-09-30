@@ -11,6 +11,7 @@
 #import "Person.h"
 #import "PersonKVO.h"
 #import "LJTeacher.h"
+#import "LJModel.h"
 #import "NSObject+LJKVO.h"
 #import "UIView+Associated.h"
 
@@ -91,13 +92,22 @@ static RuntimeManage *_instance = nil ;
     NSSelectorFromString(@"");
     sel_registerName("");       // runtime 底层写法
     
-    // 用消息发送方法创建person实例
-    // objc_msgSend(消息的接收者, 要调用的方法(方法编号SEL)，参数...)
+    /*
+     用消息发送方法创建person实例
+     objc_msgSend(消息的接收者, 要调用的方法(方法编号SEL)，参数...)
+     */
+    Person *p = objc_msgSend(NSClassFromString(@"Person"), sel_registerName("alloc"));      // Person *p = [Person alloc];
+    p = objc_msgSend(p, @selector(init));       // p = [p init];
     
-    // Person *p = [Person alloc];
-    Person *p = objc_msgSend(NSClassFromString(@"Person"), sel_registerName("alloc"));
-    // p = [p init];
-    p = objc_msgSend(p, @selector(init));
+    /*
+     访问私有变量
+     
+     我们知道，OC中没有真正意义上的私有变量和方法，要让成员变量私有，要放在m文件中声明，不对外暴露。
+     如果我们知道这个成员变量的名称，可以通过runtime获取成员变量，再通过getIvar来获取它的值。
+     */
+    Ivar ivar = class_getInstanceVariable([Person class], "privateStr");        // 获取指向变量的指针
+    NSString * str1 = object_getIvar(p, ivar);
+    NSLog(@"访问到了私有成员变量：%@", str1);
     
     // 消除警告
 #pragma clang diagnostic push
@@ -185,6 +195,26 @@ static RuntimeManage *_instance = nil ;
     UIView *view = [[UIView alloc] init];
     view.assName = @"assName111";
     NSLog(@"我是分类的属性:%@", view.assName);
+}
+
+#pragma mark ----字典转模型----
+// 可以通过runtime给分类添加属性
+- (void)dictionaryToModel {
+    // 字典转模型
+    NSDictionary *json = @{
+                           @"id" : @2,
+                           @"age" : @20,
+                           @"weight" : @60,
+                           @"name" : @"Jack",
+                           @"address" : @"杭州西湖区"
+                           };
+    LJModel *model = [LJModel cs_objectWithDict:json];
+    NSLog(@"id = %d, age = %d, weight = %d, name = %@, address = %@",
+          model.ID,
+          model.age,
+          model.weight,
+          model.name,
+          model.address);
 }
 
 @end

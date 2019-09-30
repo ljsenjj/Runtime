@@ -20,7 +20,7 @@
 - (void)diyKVO;
 - (void)changeValue;
 - (void)categoryProperty;
-    
+- (void)dictionaryToModel;
     
     
     

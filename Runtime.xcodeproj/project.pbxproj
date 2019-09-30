@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1803E5012341A45B002F2602 /* LJModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1803E5002341A45B002F2602 /* LJModel.m */; };
 		180A2FAA233E08E60035CDCA /* UIView+Associated.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A2FA9233E08E60035CDCA /* UIView+Associated.m */; };
 		1813B23F233C943200D5B1E3 /* LJTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813B23E233C943200D5B1E3 /* LJTeacher.m */; };
 		1827E709233A03B4005BEA5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188FDD2D2338EC9F0079CDF7 /* Main.storyboard */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1803E4FF2341A45B002F2602 /* LJModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJModel.h; sourceTree = "<group>"; };
+		1803E5002341A45B002F2602 /* LJModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJModel.m; sourceTree = "<group>"; };
 		180A2FA8233E08E60035CDCA /* UIView+Associated.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Associated.h"; sourceTree = "<group>"; };
 		180A2FA9233E08E60035CDCA /* UIView+Associated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Associated.m"; sourceTree = "<group>"; };
 		1813B23D233C943200D5B1E3 /* LJTeacher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTeacher.h; sourceTree = "<group>"; };
@@ -68,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1803E4FB2341A3EE002F2602 /* 字典转模型 */ = {
+			isa = PBXGroup;
+			children = (
+				1803E4FF2341A45B002F2602 /* LJModel.h */,
+				1803E5002341A45B002F2602 /* LJModel.m */,
+			);
+			path = "字典转模型";
+			sourceTree = "<group>";
+		};
 		180A2F9E233E04670035CDCA /* 分类的属性 */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +141,7 @@
 		188FDD262338EC9F0079CDF7 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
+				1803E4FB2341A3EE002F2602 /* 字典转模型 */,
 				1813B23C233C93FC00D5B1E3 /* 归档解档 */,
 				180A2F9E233E04670035CDCA /* 分类的属性 */,
 				188FDD49233A02DD0079CDF7 /* KVO */,
@@ -278,6 +291,7 @@
 				188FDD422338F5250079CDF7 /* NSURL+url.m in Sources */,
 				188FDD372338ECAF0079CDF7 /* main.m in Sources */,
 				188FDD482339BD630079CDF7 /* NSObject+LJKVO.m in Sources */,
+				1803E5012341A45B002F2602 /* LJModel.m in Sources */,
 				188FDD3F2338ECE70079CDF7 /* Person.m in Sources */,
 				188FDD292338EC9F0079CDF7 /* AppDelegate.m in Sources */,
 				188FDD452339B5AE0079CDF7 /* PersonKVO.m in Sources */,
