@@ -70,7 +70,7 @@
 
 // kvoBlock
 - (IBAction)kvoBlockClick:(id)sender {
-    
+    [_runtimeManage blockKVO];
 }
 
 // 改值

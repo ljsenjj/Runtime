@@ -114,6 +114,17 @@ static void *const LJKVOObserverAssociatedKey = (void *)&LJKVOObserverAssociated
     
 }
 
+- (void)LJ_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath {
+    
+    NSMutableArray <KVOObserverItem *> *observers = objc_getAssociatedObject(self, LJKVOObserverAssociatedKey);
+    [observers enumerateObjectsUsingBlock:^(KVOObserverItem * _Nonnull mapTable, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (mapTable.observer == observer && [mapTable.key isEqualToString:keyPath]) {
+            [observers removeObject:mapTable];
+        }
+    }];
+    
+}
+
 /**
  1. 获取旧值。
  2. 创建super的结构体，并向super发送属性的消息。

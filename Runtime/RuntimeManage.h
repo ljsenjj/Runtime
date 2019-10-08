@@ -18,6 +18,7 @@
 - (void)messageSend;
 - (void)methodExchangeImp;
 - (void)diyKVO;
+- (void)blockKVO;
 - (void)changeValue;
 - (void)categoryProperty;
 - (void)dictionaryToModel;

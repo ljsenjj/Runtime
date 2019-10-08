@@ -19,22 +19,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Runtime/&#x65b9;&#x6cd5;&#x4ea4;&#x6362;-&#x66ff;&#x6362;-&#x6dfb;&#x52a0;/Person.m"
-            timestampString = "591505413.210243"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "-init"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Runtime/RuntimeManage.m"
             timestampString = "591505413.210317"
             startingColumnNumber = "9223372036854775807"

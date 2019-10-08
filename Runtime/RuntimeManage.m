@@ -157,12 +157,7 @@ static RuntimeManage *_instance = nil ;
     // 系统观察者
 //    [_pkvo addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
     // 用自定义的观察者
-//    [_pkvo LJ_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
-    
-    // KVO Block
-    [_pkvo LJ_addObserver:self forKeyPath:@"name" callback:^(id observedObject, NSString *observedKey, id oldValue, id newValue) {
-        NSLog(@"KVO Block old=%@, new=%@", oldValue, newValue);
-    }];
+    [_pkvo LJ_addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
     
     NSLog(@"==========添加KVO监听之后==========");
     NSLog(@"p的类对象 : %@ ", object_getClass(_pkvo));      // p.isa
@@ -174,6 +169,15 @@ static RuntimeManage *_instance = nil ;
 - (void)blockKVO {
 
     _pkvo.name = @"oldName";
+    
+    // KVO Block
+    [_pkvo LJ_addObserver:self forKeyPath:@"name" callback:^(id observedObject, NSString *observedKey, id oldValue, id newValue) {
+        NSLog(@"KVO Block old=%@, new=%@", oldValue, newValue);
+    }];
+    
+    /*
+     KVOController:Facebook KVO框架，可用于工作开发
+     */
     
 }
     

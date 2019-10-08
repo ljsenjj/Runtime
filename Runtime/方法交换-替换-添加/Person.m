@@ -64,6 +64,8 @@
                                     method_getTypeEncoding(swizzledMethod));
             }
         }
+        
+        // 利用 method_setImplementation 来直接设置某个方法的IMP
     });
     
 }
@@ -98,6 +100,14 @@
     self = [super init];
     if (self) {
         privateStr = @"aaaaa";
+        
+        /*
+         class_addIvar - 添加一个成员变量
+         class_addProperty - 添加属性
+         class_addProtocol - 添加协议
+         class_replaceProperty - 替换类的属性
+         */
+
     }
     return self;
 }
