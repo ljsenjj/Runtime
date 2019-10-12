@@ -209,4 +209,26 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     }];
 }
 
+-(void)clearBadgeWithApplication:(UIApplication *)application AndClearCenter:(BOOL)clearCenter {
+    
+    if (clearCenter) {
+        // 清除角标 消息中心一起清除
+        [application setApplicationIconBadgeNumber:0];
+    }else{
+        // 清除角标 消息中心不清除
+        if (@available(iOS 11.0, *)) {
+            [UIApplication sharedApplication].applicationIconBadgeNumber = -1;
+        } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            localNotification.fireDate = [NSDate date];
+            localNotification.applicationIconBadgeNumber = -1;
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+#pragma clang diagnostic pop
+        }
+        
+    }
+}
+
 @end

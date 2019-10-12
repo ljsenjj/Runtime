@@ -40,7 +40,7 @@
     NSLog(@"deviceToken ==== %@", deviceString);
 }
 
-//获取DeviceToken失败
+// 获取DeviceToken失败
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     NSLog(@"[DeviceToken Error]:%@\n", error.description);
 }
@@ -60,6 +60,9 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    // 清除角标
+    [[LJNotifications sharedInstance] clearBadgeWithApplication:application AndClearCenter:YES];
+    
 }
 
 

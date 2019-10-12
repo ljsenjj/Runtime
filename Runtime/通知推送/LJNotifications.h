@@ -26,6 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)createLocalizedUserNotification;
 
+/**
+ 清除角标
+
+ @param application UIApplication
+ @param clearCenter YES:都清除，NO:通知中心不清除
+ */
+-(void)clearBadgeWithApplication:(UIApplication *)application AndClearCenter:(BOOL)clearCenter;
+
 @end
 
 NS_ASSUME_NONNULL_END
