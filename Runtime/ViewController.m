@@ -15,6 +15,7 @@
 
 #import "ViewController.h"
 #import "RuntimeManage.h"
+#import "LJNotifications.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) RuntimeManage *runtimeManage;
@@ -76,8 +77,14 @@
 // 改值
 - (IBAction)changeValueClick:(id)sender {
     [_runtimeManage changeValue];
-    
 }
 
+// 改值
+- (IBAction)sendNotificationClick:(id)sender {
+    
+    LJNotifications *ljNotifications = [LJNotifications sharedInstance];
+    [ljNotifications createLocalizedUserNotification];
+    
+}
 
 @end

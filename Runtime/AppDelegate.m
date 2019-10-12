@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LJNotifications.h"
 
 @interface AppDelegate ()
 
@@ -16,8 +17,32 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    LJNotifications *ljNotifications = [LJNotifications sharedInstance];
+    [ljNotifications replyPushNotificationAuthorization:application];
+    
     return YES;
+}
+
+#pragma mark ----获取device Token----
+// 获取DeviceToken成功
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    //解析NSData获取字符串
+    //我看网上这部分直接使用下面方法转换为string，你会得到一个nil
+    //错误写法
+    //NSString *string = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    
+    //正确写法
+    NSString *deviceString = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceString = [deviceString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSLog(@"deviceToken ==== %@", deviceString);
+}
+
+//获取DeviceToken失败
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"[DeviceToken Error]:%@\n", error.description);
 }
 
 

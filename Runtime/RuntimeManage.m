@@ -23,7 +23,6 @@
 @implementation RuntimeManage
 
 #pragma mark ----单例初始化----
-
 static RuntimeManage *_instance = nil ;
 
 + (RuntimeManage *)sharedInstance {
@@ -53,7 +52,6 @@ static RuntimeManage *_instance = nil ;
 -(id)mutableCopyWithZone:(NSZone *)zone {
     return _instance;
 }
-
 
 #pragma mark ----归档解档----
 - (void)archived {
