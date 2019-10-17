@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LJNotifications.h"
+#import "LJUITabBarController.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,13 @@
     
     LJNotifications *ljNotifications = [LJNotifications sharedInstance];
     [ljNotifications replyPushNotificationAuthorization:application];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    LJUITabBarController *tabBar = [[LJUITabBarController alloc] init];
+    self.window.rootViewController = tabBar;
     
     return YES;
 }

@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  ViewController1.m
 //  Runtime
 //
 //  Created by apple on 2019/9/23.
@@ -13,16 +13,22 @@
 
  */
 
-#import "ViewController.h"
+#import "ViewController1.h"
 #import "RuntimeManage.h"
 #import "LJNotifications.h"
 
-@interface ViewController ()
+@interface ViewController1 ()
 @property (nonatomic, strong) RuntimeManage *runtimeManage;
 
 @end
 
-@implementation ViewController
+@implementation ViewController1
+
+- (instancetype)init {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,10 +87,10 @@
 
 // 改值
 - (IBAction)sendNotificationClick:(id)sender {
-    
     LJNotifications *ljNotifications = [LJNotifications sharedInstance];
     [ljNotifications createLocalizedUserNotification];
     
 }
+
 
 @end

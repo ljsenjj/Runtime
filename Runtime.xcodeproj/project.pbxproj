@@ -11,10 +11,15 @@
 		180A2FAA233E08E60035CDCA /* UIView+Associated.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A2FA9233E08E60035CDCA /* UIView+Associated.m */; };
 		1813B23F233C943200D5B1E3 /* LJTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1813B23E233C943200D5B1E3 /* LJTeacher.m */; };
 		1827E709233A03B4005BEA5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188FDD2D2338EC9F0079CDF7 /* Main.storyboard */; };
+		183802762356EE6F007CD426 /* LJRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = 183802752356EE6F007CD426 /* LJRunloop.m */; };
+		18380279235702F6007CD426 /* LJUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18380278235702F6007CD426 /* LJUITabBarController.m */; };
+		1838027D235703F0007CD426 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838027C235703F0007CD426 /* ViewController2.m */; };
+		18380280235703FC007CD426 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838027F235703FC007CD426 /* ViewController3.m */; };
+		1838028323570409007CD426 /* ViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 1838028223570409007CD426 /* ViewController4.m */; };
 		186227CF233F22DB00D5A8C4 /* RuntimeManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 186227CE233F22DB00D5A8C4 /* RuntimeManage.m */; };
 		186227D2233F60D600D5A8C4 /* KVOObserverItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 186227D1233F60D600D5A8C4 /* KVOObserverItem.m */; };
 		188FDD292338EC9F0079CDF7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD282338EC9F0079CDF7 /* AppDelegate.m */; };
-		188FDD2C2338EC9F0079CDF7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD2B2338EC9F0079CDF7 /* ViewController.m */; };
+		188FDD2C2338EC9F0079CDF7 /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD2B2338EC9F0079CDF7 /* ViewController1.m */; };
 		188FDD312338ECAF0079CDF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 188FDD302338ECAF0079CDF7 /* Assets.xcassets */; };
 		188FDD342338ECAF0079CDF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 188FDD322338ECAF0079CDF7 /* LaunchScreen.storyboard */; };
 		188FDD372338ECAF0079CDF7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FDD362338ECAF0079CDF7 /* main.m */; };
@@ -33,6 +38,16 @@
 		180A2FA9233E08E60035CDCA /* UIView+Associated.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Associated.m"; sourceTree = "<group>"; };
 		1813B23D233C943200D5B1E3 /* LJTeacher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJTeacher.h; sourceTree = "<group>"; };
 		1813B23E233C943200D5B1E3 /* LJTeacher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJTeacher.m; sourceTree = "<group>"; };
+		183802742356EE6F007CD426 /* LJRunloop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJRunloop.h; sourceTree = "<group>"; };
+		183802752356EE6F007CD426 /* LJRunloop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJRunloop.m; sourceTree = "<group>"; };
+		18380277235702F6007CD426 /* LJUITabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LJUITabBarController.h; sourceTree = "<group>"; };
+		18380278235702F6007CD426 /* LJUITabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LJUITabBarController.m; sourceTree = "<group>"; };
+		1838027B235703F0007CD426 /* ViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
+		1838027C235703F0007CD426 /* ViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
+		1838027E235703FC007CD426 /* ViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController3.h; sourceTree = "<group>"; };
+		1838027F235703FC007CD426 /* ViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
+		1838028123570409007CD426 /* ViewController4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController4.h; sourceTree = "<group>"; };
+		1838028223570409007CD426 /* ViewController4.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController4.m; sourceTree = "<group>"; };
 		186227CD233F22DB00D5A8C4 /* RuntimeManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeManage.h; sourceTree = "<group>"; };
 		186227CE233F22DB00D5A8C4 /* RuntimeManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeManage.m; sourceTree = "<group>"; };
 		186227D0233F60D600D5A8C4 /* KVOObserverItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVOObserverItem.h; sourceTree = "<group>"; };
@@ -40,8 +55,8 @@
 		188FDD242338EC9F0079CDF7 /* Runtime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runtime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		188FDD272338EC9F0079CDF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		188FDD282338EC9F0079CDF7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		188FDD2A2338EC9F0079CDF7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		188FDD2B2338EC9F0079CDF7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		188FDD2A2338EC9F0079CDF7 /* ViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController1.h; sourceTree = "<group>"; };
+		188FDD2B2338EC9F0079CDF7 /* ViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController1.m; sourceTree = "<group>"; };
 		188FDD2E2338EC9F0079CDF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		188FDD302338ECAF0079CDF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		188FDD332338ECAF0079CDF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -105,6 +120,7 @@
 		1827E708233A037F005BEA5D /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				18CD6FFC23518C8F007D4F3E /* Runtime.entitlements */,
 				188FDD2D2338EC9F0079CDF7 /* Main.storyboard */,
 				188FDD302338ECAF0079CDF7 /* Assets.xcassets */,
 				188FDD322338ECAF0079CDF7 /* LaunchScreen.storyboard */,
@@ -122,6 +138,30 @@
 				188FDD412338F5250079CDF7 /* NSURL+url.m */,
 			);
 			path = "方法交换-替换-添加";
+			sourceTree = "<group>";
+		};
+		183802732356ED30007CD426 /* Runloop */ = {
+			isa = PBXGroup;
+			children = (
+				183802742356EE6F007CD426 /* LJRunloop.h */,
+				183802752356EE6F007CD426 /* LJRunloop.m */,
+			);
+			path = Runloop;
+			sourceTree = "<group>";
+		};
+		1838027A23570334007CD426 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				188FDD2A2338EC9F0079CDF7 /* ViewController1.h */,
+				188FDD2B2338EC9F0079CDF7 /* ViewController1.m */,
+				1838027B235703F0007CD426 /* ViewController2.h */,
+				1838027C235703F0007CD426 /* ViewController2.m */,
+				1838027E235703FC007CD426 /* ViewController3.h */,
+				1838027F235703FC007CD426 /* ViewController3.m */,
+				1838028123570409007CD426 /* ViewController4.h */,
+				1838028223570409007CD426 /* ViewController4.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		188FDD1B2338EC9F0079CDF7 = {
@@ -145,7 +185,7 @@
 		188FDD262338EC9F0079CDF7 /* Runtime */ = {
 			isa = PBXGroup;
 			children = (
-				18CD6FFC23518C8F007D4F3E /* Runtime.entitlements */,
+				183802732356ED30007CD426 /* Runloop */,
 				18CD6FFD23518CAB007D4F3E /* 通知推送 */,
 				1803E4FB2341A3EE002F2602 /* 字典转模型 */,
 				1813B23C233C93FC00D5B1E3 /* 归档解档 */,
@@ -153,13 +193,14 @@
 				188FDD49233A02DD0079CDF7 /* KVO */,
 				1827E70A233A03ED005BEA5D /* 方法交换-替换-添加 */,
 				1827E708233A037F005BEA5D /* Resource */,
+				1838027A23570334007CD426 /* ViewController */,
 				188FDD272338EC9F0079CDF7 /* AppDelegate.h */,
 				188FDD282338EC9F0079CDF7 /* AppDelegate.m */,
 				188FDD362338ECAF0079CDF7 /* main.m */,
-				188FDD2A2338EC9F0079CDF7 /* ViewController.h */,
-				188FDD2B2338EC9F0079CDF7 /* ViewController.m */,
 				186227CD233F22DB00D5A8C4 /* RuntimeManage.h */,
 				186227CE233F22DB00D5A8C4 /* RuntimeManage.m */,
+				18380277235702F6007CD426 /* LJUITabBarController.h */,
+				18380278235702F6007CD426 /* LJUITabBarController.m */,
 			);
 			path = Runtime;
 			sourceTree = "<group>";
@@ -305,18 +346,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				1813B23F233C943200D5B1E3 /* LJTeacher.m in Sources */,
+				18380279235702F6007CD426 /* LJUITabBarController.m in Sources */,
 				186227CF233F22DB00D5A8C4 /* RuntimeManage.m in Sources */,
-				188FDD2C2338EC9F0079CDF7 /* ViewController.m in Sources */,
+				188FDD2C2338EC9F0079CDF7 /* ViewController1.m in Sources */,
 				180A2FAA233E08E60035CDCA /* UIView+Associated.m in Sources */,
 				188FDD422338F5250079CDF7 /* NSURL+url.m in Sources */,
 				188FDD372338ECAF0079CDF7 /* main.m in Sources */,
 				188FDD482339BD630079CDF7 /* NSObject+LJKVO.m in Sources */,
 				1803E5012341A45B002F2602 /* LJModel.m in Sources */,
 				18CD700023518D0A007D4F3E /* LJNotifications.m in Sources */,
+				18380280235703FC007CD426 /* ViewController3.m in Sources */,
+				183802762356EE6F007CD426 /* LJRunloop.m in Sources */,
 				188FDD3F2338ECE70079CDF7 /* Person.m in Sources */,
 				188FDD292338EC9F0079CDF7 /* AppDelegate.m in Sources */,
+				1838027D235703F0007CD426 /* ViewController2.m in Sources */,
 				188FDD452339B5AE0079CDF7 /* PersonKVO.m in Sources */,
 				186227D2233F60D600D5A8C4 /* KVOObserverItem.m in Sources */,
+				1838028323570409007CD426 /* ViewController4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +505,7 @@
 			baseConfigurationReference = DD0F5C6794DED17F5EEA0D07 /* Pods-Runtime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Runtime/Runtime.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Runtime/Resource/Runtime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KF2PC74FC3;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
@@ -479,7 +525,7 @@
 			baseConfigurationReference = 72EA659E5E5E18CE1F9FF0C1 /* Pods-Runtime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Runtime/Runtime.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Runtime/Resource/Runtime.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KF2PC74FC3;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;

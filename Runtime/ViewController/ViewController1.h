@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ViewController1.h
 //  Runtime
 //
 //  Created by apple on 2019/9/23.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController1 : UIViewController
 
 
 @end
